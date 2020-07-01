@@ -1,0 +1,6 @@
+<h1>wakaru</h1>
+<% if logged_in? %>
+<p>ログイン中の生徒 : <%= current_student.name %></p>
+<% else %>
+    <%= link_to '新規登録', signup_path %>
+<% end %>

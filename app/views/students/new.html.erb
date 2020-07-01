@@ -1,0 +1,23 @@
+<h1>SignUp</h1>
+
+<%= form_for(@student) do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+    <div class = "form">
+        <%= f.label :name, 'Name'%>
+        <%= f.text_field :name %>
+    </div>
+    <div class = "form">
+        <%= f.label :name, 'Email'%>
+        <%= f.email_field :email %>
+    </div>
+    <div class = "form">
+        <%= f.label :name, 'Password'%>
+        <%= f.password_field :password %>
+    </div>
+    <div class = "form">
+        <%= f.label :name, 'Confirmation'%>
+        <%= f.password_field :password_confirmation %>
+    </div>
+
+    <%= f.submit 'SignUp'%>
+<% end %>
