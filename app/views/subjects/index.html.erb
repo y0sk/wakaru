@@ -1,11 +1,6 @@
 <h1>Hi, I am Subject INDEX</h1>
 
-<ul>
-<li><%= link_to '数学', subject_path(1) %></li>
-<li>英語</li>
-<li>物理</li>
-<li>化学</li>
-<li>古文</li>
-<li>漢文</li>
-<li>現代文</li>
+    <% @subjects.each do |s| %>
+        <li><%= link_to s.name, subject_fields_path(s) %></li>
+    <% end %>
 </ul>

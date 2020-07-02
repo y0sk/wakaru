@@ -1,6 +1,7 @@
 class FieldsController < ApplicationController
 
     def index
+        @fields = Subject.find(params[:subject_id]).fields
     end
 
     def show
@@ -17,7 +18,7 @@ class FieldsController < ApplicationController
 
     def update
     end
-    
+
     def destroy
     end
     

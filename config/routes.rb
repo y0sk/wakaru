@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   get 'signup', to: 'students#new'
   resources :students, only: [:index,:show, :new, :create, :edit, :update, :destroy]
-  resources :subjects, only: [:index,:show, :new, :create, :edit, :update, :destroy]
-  resources :fields, only: [:index,:show, :new, :create, :edit, :update, :destroy]
+  resources :subjects do
+    resources :fields, only: [:index, :new, :create]
+  end
+  resources :fields, only: [:show, :edit, :update, :destroy]
   resources :ckeck_tests, only: [:index,:show, :new, :create, :edit, :update, :destroy]
 end
