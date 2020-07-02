@@ -1,0 +1,2 @@
+class CheckTest < ApplicationRecord
+end

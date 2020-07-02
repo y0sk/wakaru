@@ -17,19 +17,14 @@ class StudentsController < ApplicationController
 
     if @student.save
       flash[:success] = '生徒を登録しました。'
-      redirect_to students_url
+      redirect_to root
     else
       flash.now[:danger] = '生徒を登録できませんでした。'
       render :new
     end
   end
 
-  private
-
-  def student_params
-    params.require(:student).permit(:name, :email, :password, :password_confirmation)
-  end
-
+  
   def edit
   end
 
@@ -38,4 +33,11 @@ class StudentsController < ApplicationController
 
   def destroy
   end
+
+  private
+
+  def student_params
+    params.require(:student).permit(:name, :email, :password, :password_confirmation)
+  end
+
 end

@@ -4,10 +4,10 @@ class SessionsController < ApplicationController
 
   def create
     email = params[:session][:email].downcase
-    password = params[:sessions][:password]
+    password = params[:session][:password]
     if login(email, password)
       flash[:success] = 'ログインできました。'
-      redirect @student
+      redirect_to subjects_path
     else
       flash[:danger] = 'ログインできませんでいた。'
       render 'new'

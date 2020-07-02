@@ -1,0 +1,2 @@
+class CheckTestsController < ApplicationController
+end

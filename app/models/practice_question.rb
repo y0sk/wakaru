@@ -1,0 +1,2 @@
+class PracticeQuestion < ApplicationRecord
+end

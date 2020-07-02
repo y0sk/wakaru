@@ -1,0 +1,2 @@
+class CheckTestElement < ApplicationRecord
+end

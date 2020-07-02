@@ -1,16 +1,13 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-
-  get 'sessions/create'
-
-  get 'sessions/destroy'
-
-  root to: 'toppages#index'
+  root to: 'sessions#new'
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
   get 'signup', to: 'students#new'
-  resource :students, only: [:index,:show, :new, :create, :edit, :update, :destroy]
+  resources :students, only: [:index,:show, :new, :create, :edit, :update, :destroy]
+  resources :subjects, only: [:index,:show, :new, :create, :edit, :update, :destroy]
+  resources :fields, only: [:index,:show, :new, :create, :edit, :update, :destroy]
+  resources :ckeck_tests, only: [:index,:show, :new, :create, :edit, :update, :destroy]
 end
