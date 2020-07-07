@@ -1,0 +1,13 @@
+<h1>Hi I am check_test_sentence SHOW</h1>
+<h2><%= @check_test_sentence.sentence %></h2>
+
+<%= form_for [@check_test_sentence,@check_test_answer] do |f| %>
+        <div class = "form">
+            <%= f.collection_radio_buttons(:answer_of_check_test_option_id, CheckTestSentence.find(params[:id]).check_test_options.all, :id, :option) do |b| %>
+                <%= b.label {b.radio_button + b.text} %><br>
+            <% end %>
+        </div>
+        
+    <%= f.submit '答える'%>
+
+<% end %>

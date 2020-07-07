@@ -17,7 +17,7 @@ class StudentsController < ApplicationController
 
     if @student.save
       flash[:success] = '生徒を登録しました。'
-      redirect_to root
+      redirect_to "/"
     else
       flash.now[:danger] = '生徒を登録できませんでした。'
       render :new

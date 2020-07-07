@@ -1,0 +1,2 @@
+module CheckTestSentencesHelper
+end

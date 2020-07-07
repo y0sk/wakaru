@@ -1,0 +1,6 @@
+<h1>I am check_test INDEX</h1>
+<ul>
+    <% @check_test_sentences.each do |c| %>
+        <li><%= link_to c.sentence, check_test_sentence_path(c.id) %></li>
+    <% end %>
+</ul>

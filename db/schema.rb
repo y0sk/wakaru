@@ -10,14 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200702100441) do
+ActiveRecord::Schema.define(version: 20200706122259) do
 
-  create_table "check_test_elements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "check_test_answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "answer_of_check_test_option_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "check_test_sentence_id"
+    t.index ["check_test_sentence_id"], name: "index_check_test_answers_on_check_test_sentence_id", using: :btree
+  end
+
+  create_table "check_test_options", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "option",                 limit: 65535
+    t.integer  "check_test_sentence_id"
     t.integer  "correctness"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.index ["check_test_sentence_id"], name: "index_check_test_options_on_check_test_sentence_id", using: :btree
+  end
+
+  create_table "check_test_sentences", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "check_test_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["check_test_id"], name: "index_check_test_elements_on_check_test_id", using: :btree
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.text     "sentence",      limit: 65535
+    t.index ["check_test_id"], name: "index_check_test_sentences_on_check_test_id", using: :btree
   end
 
   create_table "check_tests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -68,10 +85,12 @@ ActiveRecord::Schema.define(version: 20200702100441) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "check_test_elements", "check_tests"
+  add_foreign_key "check_test_answers", "check_test_sentences"
+  add_foreign_key "check_test_options", "check_test_sentences"
+  add_foreign_key "check_test_sentences", "check_tests"
   add_foreign_key "check_tests", "fields"
   add_foreign_key "check_tests", "students"
   add_foreign_key "fields", "subjects"
   add_foreign_key "practice_question_elements", "practice_questions"
-  add_foreign_key "practice_questions", "check_test_elements"
+  add_foreign_key "practice_questions", "check_test_sentences", column: "check_test_element_id"
 end
