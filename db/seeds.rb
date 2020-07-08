@@ -1,7 +1,16 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+CheckTestSentence.find(5).check_test_options.create!(
+   option: "これ",
+   correctness: "true"
+)
+CheckTestSentence.find(5).check_test_options.create!(
+   option: "それ"
+)
+CheckTestSentence.find(5).check_test_options.create!(
+   option: "あれ"
+)
+CheckTestSentence.find(5).check_test_options.create!(
+   option: "どれ"
+)
+CheckTestSentence.find(5).check_test_options.create!(
+   option: "おれだよ"
+)

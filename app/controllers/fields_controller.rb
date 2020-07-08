@@ -2,6 +2,7 @@ class FieldsController < ApplicationController
 
     def index
         @fields = Subject.find(params[:subject_id]).fields
+        
     end
 
     def show

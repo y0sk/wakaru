@@ -1,6 +1,7 @@
 <h1>Hi I am Field INDEX</h1>
 <ul>
     <% @fields.each do |f| %>
-        <li><%= link_to f.name, field_check_tests_path(f) %></li>
+        <li><%= link_to f.name, check_test_sentence_path(f.check_tests.first.check_test_sentences.all.pluck(:id)[0]) %></li>
+        <p><%= f.check_tests.first.check_test_sentences.all.pluck(:id) %></p>
     <% end %>
 </ul>

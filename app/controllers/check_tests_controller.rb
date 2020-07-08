@@ -1,6 +1,7 @@
 class CheckTestsController < ApplicationController
     def index
         @check_test_sentences = Field.find(params[:field_id]).check_tests.first.check_test_sentences.all
+        @id_of_check_test_sentences = @check_test_sentences.pluck(:id) 
     end
 
     def show

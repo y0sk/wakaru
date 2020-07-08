@@ -3,4 +3,5 @@
     <% @check_test_sentences.each do |c| %>
         <li><%= link_to c.sentence, check_test_sentence_path(c.id) %></li>
     <% end %>
+    <p><%= @id_of_check_test_sentences %></p>
 </ul>

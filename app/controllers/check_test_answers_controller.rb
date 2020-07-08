@@ -11,8 +11,16 @@ class CheckTestAnswersController < ApplicationController
   end
 
   def create
-    CheckTestAnswer.create(create_params)
+    @check_test_answer = CheckTestAnswer.new(create_params)
     
+    if @check_test_answer.save
+      redirect_to check_test_sentences_path
+    else
+      redirect_to :back, notice: '回答を登録できませんでした。'
+      
+
+    end
+
   end
 
   def edit
