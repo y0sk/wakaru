@@ -12,15 +12,16 @@ class CheckTestAnswersController < ApplicationController
 
   def create
     @check_test_answer = CheckTestAnswer.new(create_params)
-    
-    if @check_test_answer.save
-      redirect_to check_test_sentences_path
+    @ids = params[:check_test_answer][:ids].split(" ")
+    @check_test_sentence_id = params[:check_test_sentence_id]
+    if @check_test_sentence_id != @ids[@ids.length - 1]
+      next_page_id = @check_test_sentence_id.to_i + 1
+      save_check_test_answer(@check_test_answer, next_page_id)
     else
-      redirect_to :back, notice: '回答を登録できませんでした。'
-      
-
+      redirect_to fields_path(subject_id: CheckTestSentence.find(@check_test_sentence_id).check_test.field.subject_id)
     end
 
+    
   end
 
   def edit
@@ -30,6 +31,18 @@ class CheckTestAnswersController < ApplicationController
   end
 
   def destroy
+  end
+
+  def save_check_test_answer(check_test_answer, next_page_id)
+    if check_test_answer.save
+      #binding.pry
+      redirect_to check_test_sentence_path(next_page_id, ids: CheckTest.find(params[:check_test_answer][:check_test_id]).check_test_sentences.pluck(:id))
+    else
+      redirect_to :back, notice: '回答を登録できませんでした。'
+      
+
+    end
+
   end
 
   private
