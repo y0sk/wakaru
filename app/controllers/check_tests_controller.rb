@@ -5,7 +5,7 @@ class CheckTestsController < ApplicationController
     end
 
     def show
-        
+        @student = current_student
     end
 
     def new

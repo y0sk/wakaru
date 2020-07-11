@@ -7,6 +7,7 @@ class CheckTestSentencesController < ApplicationController
     @check_test_options = @check_test_sentence.check_test_options.all
     @check_test_answer = @check_test_sentence.check_test_answers.new
     @check_test_id = @check_test_sentence.check_test_id
+    @student = current_student
   end
 
   def new

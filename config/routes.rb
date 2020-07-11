@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   root to: 'sessions#new'
 
   get 'login', to: 'sessions#new'
@@ -14,9 +16,12 @@ Rails.application.routes.draw do
 
   resources :fields do
     resources :check_tests, only: [:index, :new, :create]
+    resources :practice_questions, only:  [:index, :new, :create]
+    
   end
 
   resources :check_tests, only: [:show, :edit, :update, :destroy]
+  resources :practice_questions, only: [:show, :edit, :update, :destroy]
 
   resources :check_tests do
     resources :check_test_sentences, only: [:index, :new, :create]
@@ -31,7 +36,7 @@ Rails.application.routes.draw do
 
   resources :check_test_options, only: [:show, :edit, :update, :destroy]
 
-  resources :check_test_answers, only: [:show, :edit, :update, :destroy]
+  resources :check_test_answers, only: [:show, :edit, :update, :destroy]  
   
   get '答える', to: 'check_test_answers#new'
 

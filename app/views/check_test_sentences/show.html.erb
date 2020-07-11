@@ -7,11 +7,11 @@
         <%= b.label {b.radio_button + b.text} %><br>
     <% end %>
         </div>
-        <%= f.hidden_field :next_page_id, :value =>  params[:ids].map!(&:to_i)[1] %>
         <%= f.hidden_field :ids, :value =>  params[:ids].map!(&:to_i) %>
         <%= f.hidden_field :check_test_id, :value =>  @check_test_id %>
-        
-        
+        <%= f.hidden_field :started_time, :value =>  params[:started_time] %>
+        <%= f.hidden_field :field_id, :value =>  params[:field_id] %>
+        <%= f.hidden_field :student_id, :value =>  @student.id %>
         
         <%= f.submit '答える'%>
         

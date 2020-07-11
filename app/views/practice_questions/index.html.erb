@@ -1,1 +1,13 @@
 <h1>Hi I am PracticeQuestion INDEX </h1>
+
+<% @check_test_answers.each do |a| %>
+    check_test_sentenceのid <%= a.check_test_sentence.id %><br>
+    問題文 <%= a.check_test_sentence.sentence %><br>
+    check_test_optionのid <%= a.answer_of_check_test_option_id %><br>
+    <% if CheckTestOption.find(a.answer_of_check_test_option_id).correctness %>
+        <p>○</p>
+    <% else %>
+        <p>×</p>
+    <% end %>
+    check_test_optionのcorrectness <%= CheckTestOption.find(a.answer_of_check_test_option_id).correctness %><br>
+<% end %>

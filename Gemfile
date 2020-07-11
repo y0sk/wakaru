@@ -34,6 +34,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'pry-rails'
 gem 'pry-byebug'
 gem 'pry-doc'
+gem 'activeadmin'
+gem 'devise'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

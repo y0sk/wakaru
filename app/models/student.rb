@@ -6,5 +6,5 @@ class Student < ApplicationRecord
     uniqueness: {case_sensitive: false}
     has_secure_password
     
-    has_many :check_tests
+    has_many :check_test_answers
 end

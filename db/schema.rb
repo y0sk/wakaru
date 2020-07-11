@@ -10,22 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200706122259) do
+ActiveRecord::Schema.define(version: 20200711211926) do
+
+  create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "namespace"
+    t.text     "body",          limit: 65535
+    t.string   "resource_type"
+    t.integer  "resource_id"
+    t.string   "author_type"
+    t.integer  "author_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+  end
+
+  create_table "admin_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+  end
 
   create_table "check_test_answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "answer_of_check_test_option_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.integer  "check_test_sentence_id"
+    t.integer  "student_id"
     t.index ["check_test_sentence_id"], name: "index_check_test_answers_on_check_test_sentence_id", using: :btree
+    t.index ["student_id"], name: "index_check_test_answers_on_student_id", using: :btree
   end
 
   create_table "check_test_options", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "option",                 limit: 65535
     t.integer  "check_test_sentence_id"
-    t.integer  "correctness"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.boolean  "correctness",                          default: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
     t.index ["check_test_sentence_id"], name: "index_check_test_options_on_check_test_sentence_id", using: :btree
   end
 
@@ -41,9 +69,7 @@ ActiveRecord::Schema.define(version: 20200706122259) do
     t.integer  "field_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "student_id"
     t.index ["field_id"], name: "index_check_tests_on_field_id", using: :btree
-    t.index ["student_id"], name: "index_check_tests_on_student_id", using: :btree
   end
 
   create_table "fields", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -64,11 +90,11 @@ ActiveRecord::Schema.define(version: 20200706122259) do
   end
 
   create_table "practice_questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.binary   "source_picture",        limit: 65535
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.integer  "check_test_element_id"
-    t.index ["check_test_element_id"], name: "index_practice_questions_on_check_test_element_id", using: :btree
+    t.binary   "source_picture",         limit: 65535
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "check_test_sentence_id"
+    t.index ["check_test_sentence_id"], name: "index_practice_questions_on_check_test_sentence_id", using: :btree
   end
 
   create_table "students", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -86,11 +112,11 @@ ActiveRecord::Schema.define(version: 20200706122259) do
   end
 
   add_foreign_key "check_test_answers", "check_test_sentences"
+  add_foreign_key "check_test_answers", "students"
   add_foreign_key "check_test_options", "check_test_sentences"
   add_foreign_key "check_test_sentences", "check_tests"
   add_foreign_key "check_tests", "fields"
-  add_foreign_key "check_tests", "students"
   add_foreign_key "fields", "subjects"
   add_foreign_key "practice_question_elements", "practice_questions"
-  add_foreign_key "practice_questions", "check_test_sentences", column: "check_test_element_id"
+  add_foreign_key "practice_questions", "check_test_sentences"
 end
