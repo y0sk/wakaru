@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200711211926) do
+ActiveRecord::Schema.define(version: 20200712102919) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -90,10 +90,13 @@ ActiveRecord::Schema.define(version: 20200711211926) do
   end
 
   create_table "practice_questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.binary   "source_picture",         limit: 65535
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "check_test_sentence_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.bigint   "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["check_test_sentence_id"], name: "index_practice_questions_on_check_test_sentence_id", using: :btree
   end
 

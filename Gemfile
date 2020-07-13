@@ -36,6 +36,8 @@ gem 'pry-byebug'
 gem 'pry-doc'
 gem 'activeadmin'
 gem 'devise'
+gem 'rmagick'
+gem 'paperclip'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

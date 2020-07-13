@@ -10,4 +10,5 @@
         <p>×</p>
     <% end %>
     check_test_optionのcorrectness <%= CheckTestOption.find(a.answer_of_check_test_option_id).correctness %><br>
-<% end %>
+    <%= link_to a.check_test_sentence.sentence, practice_question_path(a.check_test_sentence.practice_questions, practice_question_id: a.check_test_sentence.practice_questions.first) %>
+    <% end %>
