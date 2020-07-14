@@ -12,3 +12,10 @@
     check_test_optionのcorrectness <%= CheckTestOption.find(a.answer_of_check_test_option_id).correctness %><br>
     <%= link_to a.check_test_sentence.sentence, practice_question_path(a.check_test_sentence.practice_questions, practice_question_id: a.check_test_sentence.practice_questions.first) %>
     <% end %>
+    <br>
+    <%= link_to "#{@field_name}のチェックテスト選択に戻る", check_tests_path(field_id: @field_id) %>
+    <br>
+    <%= link_to "分野選択に戻る", fields_path(subject_id: @subject_id) %>
+    <br>
+    <%= link_to "科目選択に戻る", subjects_path %>
+    

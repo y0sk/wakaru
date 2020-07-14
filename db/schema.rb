@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200712102919) do
+ActiveRecord::Schema.define(version: 20200714104225) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20200712102919) do
     t.integer  "field_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
     t.index ["field_id"], name: "index_check_tests_on_field_id", using: :btree
   end
 
@@ -112,6 +113,15 @@ ActiveRecord::Schema.define(version: 20200712102919) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "video_lectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "video_lecture_url",     limit: 65535
+    t.text     "memo",                  limit: 65535
+    t.integer  "practice_questions_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["practice_questions_id"], name: "index_video_lectures_on_practice_questions_id", using: :btree
   end
 
   add_foreign_key "check_test_answers", "check_test_sentences"

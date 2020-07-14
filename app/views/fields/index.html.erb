@@ -1,7 +1,9 @@
 <h1>Hi I am Field INDEX</h1>
+
 <ul>
     <% @fields.each do |f| %>
-        <li><%= link_to f.name, check_test_sentence_path(f.check_tests.first.check_test_sentences.all.pluck(:id)[0], ids: f.check_tests.first.check_test_sentences.all.pluck(:id), started_time: Time.now, field_id: f.id) %></li>
+        <li><%= link_to f.name, check_tests_path(ids: f.check_tests.first.check_test_sentences.all.pluck(:id), started_time: Time.now, field_id: f.id) %></li>
     <% end %>
 </ul>
-<p><%= Time.now %></p>
+
+<%=link_to '科目選択に戻る', subjects_path %>

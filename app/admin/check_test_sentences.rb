@@ -3,7 +3,7 @@ ActiveAdmin.register CheckTestSentence do
 
    form do |f|
     f.inputs do
-      f.input :check_test_id, label: 'check_test_id', as: :select, collection: CheckTest.all.map { |a| [a.field.name, a.id] } 
+      f.input :check_test_id, label: 'check_test_id', as: :select, collection: CheckTest.all.map { |a| [[a.field.name, a.name], a.id] } 
       f.input :sentence
     end
     f.actions
