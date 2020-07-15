@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200714104225) do
+ActiveRecord::Schema.define(version: 20200714110918) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -116,12 +116,12 @@ ActiveRecord::Schema.define(version: 20200714104225) do
   end
 
   create_table "video_lectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "video_lecture_url",     limit: 65535
-    t.text     "memo",                  limit: 65535
-    t.integer  "practice_questions_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.index ["practice_questions_id"], name: "index_video_lectures_on_practice_questions_id", using: :btree
+    t.text     "video_lecture_url",    limit: 65535
+    t.text     "memo",                 limit: 65535
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "practice_question_id"
+    t.index ["practice_question_id"], name: "index_video_lectures_on_practice_question_id", using: :btree
   end
 
   add_foreign_key "check_test_answers", "check_test_sentences"
@@ -132,4 +132,5 @@ ActiveRecord::Schema.define(version: 20200714104225) do
   add_foreign_key "fields", "subjects"
   add_foreign_key "practice_question_elements", "practice_questions"
   add_foreign_key "practice_questions", "check_test_sentences"
+  add_foreign_key "video_lectures", "practice_questions"
 end

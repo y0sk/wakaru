@@ -1,1 +1,13 @@
-<img border="0" src="<%= PracticeQuestion.find(params[:practice_question_id]).image %>" width="500" height="900">
+<% if @practice_question.present? %>
+    <img border="0" src="<%= @practice_question.image %>" width="500" height="900"><br>
+<% else %>
+    <p>演習問題がありません</p>
+<% end %>
+
+<% if @video_lectures.present? %>
+    <% @video_lectures.each do |v| %>
+        <iframe width="560" height="315" src="<%= v.video_lecture_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <% end %>
+<% else %>
+    <p></p>
+<% end %>

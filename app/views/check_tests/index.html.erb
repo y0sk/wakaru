@@ -3,6 +3,7 @@
 <ul>
     <% @check_tests.each do |c| %>
         <li><%= link_to c.name, check_test_sentence_path(c.check_test_sentences.all.pluck(:id)[0], ids: c.check_test_sentences.all.pluck(:id), started_time: Time.now, field_id: c.field.id) %></li>
+        <p>全<%= c.check_test_sentences.length %>問</p>
     <% end %>
 </ul>
 
