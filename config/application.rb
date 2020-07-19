@@ -22,6 +22,5 @@ module Wakaru
     config.active_record.default_timezone = :local
   end
 
-   #Paperclip.options[:command_path] = 'C:\Program Files (x86)\GnuWin32\bin'
 
 end

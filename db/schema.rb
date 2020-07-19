@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200714110918) do
+ActiveRecord::Schema.define(version: 20200718142122) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -67,10 +67,16 @@ ActiveRecord::Schema.define(version: 20200714110918) do
 
   create_table "check_tests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "field_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "name"
+    t.integer  "material_id"
+    t.integer  "starts_from"
+    t.integer  "ends_to"
+    t.string   "chapter"
+    t.string   "unit_name"
     t.index ["field_id"], name: "index_check_tests_on_field_id", using: :btree
+    t.index ["material_id"], name: "index_check_tests_on_material_id", using: :btree
   end
 
   create_table "fields", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -79,6 +85,25 @@ ActiveRecord::Schema.define(version: 20200714110918) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["subject_id"], name: "index_fields_on_subject_id", using: :btree
+  end
+
+  create_table "materials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subject_id"], name: "index_materials_on_subject_id", using: :btree
+  end
+
+  create_table "pictures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.bigint   "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "holder_type"
+    t.integer  "holder_id"
+    t.index ["holder_type", "holder_id"], name: "index_pictures_on_holder_type_and_holder_id", using: :btree
   end
 
   create_table "practice_question_elements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -129,7 +154,9 @@ ActiveRecord::Schema.define(version: 20200714110918) do
   add_foreign_key "check_test_options", "check_test_sentences"
   add_foreign_key "check_test_sentences", "check_tests"
   add_foreign_key "check_tests", "fields"
+  add_foreign_key "check_tests", "materials"
   add_foreign_key "fields", "subjects"
+  add_foreign_key "materials", "subjects"
   add_foreign_key "practice_question_elements", "practice_questions"
   add_foreign_key "practice_questions", "check_test_sentences"
   add_foreign_key "video_lectures", "practice_questions"
