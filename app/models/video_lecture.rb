@@ -1,4 +1,4 @@
 class VideoLecture < ApplicationRecord
-    belongs_to :practice_question
+    belongs_to :practice_question, optional: true
 
 end

@@ -8,11 +8,10 @@ class PracticeQuestionsController < ApplicationController
 
     end
     def show
-        if params[:practice_question_id]
-            @practice_question = PracticeQuestion.find(params[:practice_question_id])
-            @video_lectures = @practice_question.video_lectures
-        else
-        end
+        @practice_question = PracticeQuestion.find(params[:practice_question_id])
+        @image_of_practice_questions = @practice_question.pictures.all
+        @video_lectures = @practice_question.video_lectures.all
+        
     end
 
 end

@@ -1,17 +1,29 @@
-<h1>Hi I am PracticeQuestion INDEX </h1>
-
+<h1>チェックテストの結果 </h1>
+<h2><%= @check_test_answers.first.check_test_sentence.check_test.name %></h2>
 <% @check_test_answers.each do |a| %>
-    check_test_sentenceのid <%= a.check_test_sentence.id %><br>
-    問題文 <%= a.check_test_sentence.sentence %><br>
-    check_test_optionのid <%= a.answer_of_check_test_option_id %><br>
+    問題文: <%= a.check_test_sentence.sentence %><br>
+    <%= current_student.name %>さんの解答: 
+    <% if CheckTestOption.find(a.answer_of_check_test_option_id).pictures.present? %>
+        <% CheckTestOption.find(a.answer_of_check_test_option_id).pictures.each do |p| %>
+            <%= image_tag(p.image.url, height: '250', width: '300')%>
+        <% end %>
+    <% else %>
+    <% end %>
+    <%= CheckTestOption.find(a.answer_of_check_test_option_id).option %>
+    <br>
+    チェックテストの答え合わせは・・・
     <% if CheckTestOption.find(a.answer_of_check_test_option_id).correctness %>
         <p>○</p>
     <% else %>
         <p>×</p>
     <% end %>
-    check_test_optionのcorrectness <%= CheckTestOption.find(a.answer_of_check_test_option_id).correctness %><br>
-    <%= link_to a.check_test_sentence.sentence, practice_question_path(a.check_test_sentence.practice_questions, practice_question_id: a.check_test_sentence.practice_questions.first) %>
+    <% a.check_test_sentence.practice_questions.each do |p|%>
+        <%= link_to "「#{a.check_test_sentence.sentence}」の演習問題へ", practice_question_path(p, practice_question_id: p.id) %>
+        <br>
+        <br>
+        <% end %>
     <% end %>
+    
     
     <br>
     <%= link_to "#{@field_name}のチェックテスト選択に戻る", check_tests_path(field_id: @field_id) %>

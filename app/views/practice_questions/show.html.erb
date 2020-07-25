@@ -1,13 +1,18 @@
-<% if @practice_question.present? %>
-    <img border="0" src="<%= @practice_question.image %>" width="500" height="900"><br>
-<% else %>
-    <p>演習問題がありません</p>
-<% end %>
-
 <% if @video_lectures.present? %>
     <% @video_lectures.each do |v| %>
         <iframe width="560" height="315" src="<%= v.video_lecture_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <br>
     <% end %>
 <% else %>
     <p></p>
 <% end %>
+
+<% if @practice_question.present? %>
+    <% @image_of_practice_questions.each do |i| %>
+        <%= image_tag(i.image.url, height: '700', width: '600')%>
+        <br>
+    <% end %>
+    <% else %>
+    <p>演習問題がありません</p>
+<% end %>
+
