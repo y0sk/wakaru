@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200718142122) do
+ActiveRecord::Schema.define(version: 20200720102013) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -91,18 +91,19 @@ ActiveRecord::Schema.define(version: 20200718142122) do
     t.integer  "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
     t.index ["subject_id"], name: "index_materials_on_subject_id", using: :btree
   end
 
   create_table "pictures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.string   "holder_type"
+    t.integer  "holder_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.bigint   "image_file_size"
     t.datetime "image_updated_at"
-    t.string   "holder_type"
-    t.integer  "holder_id"
     t.index ["holder_type", "holder_id"], name: "index_pictures_on_holder_type_and_holder_id", using: :btree
   end
 
@@ -119,10 +120,6 @@ ActiveRecord::Schema.define(version: 20200718142122) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "check_test_sentence_id"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.bigint   "image_file_size"
-    t.datetime "image_updated_at"
     t.index ["check_test_sentence_id"], name: "index_practice_questions_on_check_test_sentence_id", using: :btree
   end
 

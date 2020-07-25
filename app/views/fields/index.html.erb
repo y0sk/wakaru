@@ -2,7 +2,10 @@
 
 <ul>
     <% @fields.each do |f| %>
-        <li><%= link_to f.name, check_tests_path(ids: f.check_tests.first.check_test_sentences.all.pluck(:id), started_time: Time.now, field_id: f.id) %></li>
+        <% if f.check_tests.first.present? %>
+            <li><%= link_to f.name, check_tests_path(ids: f.check_tests.first.check_test_sentences.all.pluck(:id), started_time: Time.now, field_id: f.id) %></li>
+        <% else %>
+        <% end %>
     <% end %>
 </ul>
 

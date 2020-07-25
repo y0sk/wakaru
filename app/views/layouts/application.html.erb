@@ -7,9 +7,17 @@
 
     <title>wakaru</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script>
+    MathJax = {
+      chtml: {
+      matchFontHeight: false
+      }
+    };
+    </script>
+    <script id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script> 
   </head>
 
   <body>
