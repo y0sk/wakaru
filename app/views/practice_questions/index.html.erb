@@ -1,29 +1,49 @@
 <h1>チェックテストの結果 </h1>
 <h2><%= @check_test_answers.first.check_test_sentence.check_test.name %></h2>
+
+
 <% @check_test_answers.each do |a| %>
+    <div class="result-element">
+    <div class="sentence">
     問題文: <%= a.check_test_sentence.sentence %><br>
+    </div>  
+    <div class="options">
+    選択肢: 
+    <ul>
+        <% a.check_test_sentence.check_test_options.each do |o |%>
+            <li><%= o.option%><li>
+            <% if o.pictures.present? %>
+                <% o.pictures.each do |p| %>
+                    <%= image_tag(p.image.url, height: '100', width: '150')%>
+                <% end %>
+            <% end %>
+        <% end %>
+    <ul>
+    </div>
+    <div class="answer">
     <%= current_student.name %>さんの解答: 
     <% if CheckTestOption.find(a.answer_of_check_test_option_id).pictures.present? %>
         <% CheckTestOption.find(a.answer_of_check_test_option_id).pictures.each do |p| %>
-            <%= image_tag(p.image.url, height: '250', width: '300')%>
+            <%= image_tag(p.image.url, height: '100', width: '150')%>
         <% end %>
     <% else %>
     <% end %>
     <%= CheckTestOption.find(a.answer_of_check_test_option_id).option %>
     <br>
-    チェックテストの答え合わせは・・・
     <% if CheckTestOption.find(a.answer_of_check_test_option_id).correctness %>
-        <p>○</p>
+        <p>チェックテストの答え合わせは・・・ ○</p>
     <% else %>
-        <p>×</p>
+        <p>チェックテストの答え合わせは・・・ ×</p>
     <% end %>
     <% a.check_test_sentence.practice_questions.each do |p|%>
         <%= link_to "「#{a.check_test_sentence.sentence}」の演習問題へ", practice_question_path(p, practice_question_id: p.id) %>
         <br>
         <br>
         <% end %>
+    </div>
+    </div>
     <% end %>
-    
+
     
     <br>
     <%= link_to "#{@field_name}のチェックテスト選択に戻る", check_tests_path(field_id: @field_id) %>

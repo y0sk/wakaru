@@ -1,7 +1,8 @@
 class FieldsController < ApplicationController
 
     def index
-        @fields = Subject.find(params[:subject_id]).fields
+        @subject = Subject.find(params[:subject_id]) 
+        @fields = @subject.fields
         
     end
 

@@ -1,6 +1,14 @@
-<h1>Hi, I am Subject INDEX</h1>
+<div class="head">
+<h2>科目を選ぶ</h2>
+</div>
+
+<div class="list">
 <ul>
+
     <% @subjects.each do |s| %>
+        <div class="list-child">
         <li><%= link_to s.name, subject_fields_path(s) %></li>
+        </div>
     <% end %>
 </ul>
+</list>

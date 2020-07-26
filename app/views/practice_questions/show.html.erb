@@ -1,3 +1,4 @@
+<h2>「<%= @practice_question.check_test_sentence.sentence %>」の演習問題</h2>
 <% if @video_lectures.present? %>
     <% @video_lectures.each do |v| %>
         <iframe width="560" height="315" src="<%= v.video_lecture_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -16,3 +17,4 @@
     <p>演習問題がありません</p>
 <% end %>
 
+    

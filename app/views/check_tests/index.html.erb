@@ -1,14 +1,23 @@
-<h1>I am check_test INDEX</h1>
+<div class="head">
+<h2>チェックテストを選ぶ</h2>
+<h3><%= @subject.name %> の <%= @field.name %> を選択中</h3>
+</div>
 
+<div class="list">
 <ul>
     <% @check_tests.each do |c| %>
         <% if c.check_test_sentences.present? %>
-            <li><%= link_to c.name, check_test_sentence_path(c.check_test_sentences.all.pluck(:id)[0], ids: c.check_test_sentences.all.pluck(:id), started_time: Time.now, field_id: c.field.id) %></li>
-            <p>全<%= c.check_test_sentences.length %>問</p>
+        <div class="list-child">
+            <li>
+            <%= link_to "#{c.name}(全#{c.check_test_sentences.length}問)", check_test_sentence_path(c.check_test_sentences.all.pluck(:id)[0], ids: c.check_test_sentences.all.pluck(:id), started_time: Time.now, field_id: c.field.id) %>
+            </li>
+        </div>
         <% else %>
         <% end %>
     <% end %>
 </ul>
-
+</div>
+<div class="link">
 <%= link_to '分野選択に戻る', fields_path(id: @check_tests.first.field, subject_id: @check_tests.first.field.subject ) %><br>
 <%= link_to '科目選択に戻る', subjects_path %>
+</div>

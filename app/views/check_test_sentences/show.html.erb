@@ -1,5 +1,7 @@
-<h1>Hi I am check_test_sentence SHOW</h1>
+<div class="head">
+<h2>チェックテスト「<%= @check_test_sentence.check_test.name %>」</h2>
 <h2><%= @check_test_sentence.sentence %></h2>
+
 <% if @check_test_sentence.pictures.present? %>
     <% @check_test_sentence.pictures.each do |p| %>
         <%= image_tag(p.image.url, height: '250', width: '300')%>

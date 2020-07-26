@@ -1,12 +1,19 @@
-<h1>Hi I am Field INDEX</h1>
-
+<div class="head">
+<h2>分野を選ぶ</h2>
+<h3><%= @subject.name %>を選択中</h3>
+</div>
+<div class="list">
 <ul>
     <% @fields.each do |f| %>
         <% if f.check_tests.first.present? %>
+        <div class="list-child">
             <li><%= link_to f.name, check_tests_path(ids: f.check_tests.first.check_test_sentences.all.pluck(:id), started_time: Time.now, field_id: f.id) %></li>
+        </div>
         <% else %>
         <% end %>
     <% end %>
 </ul>
 
+<div class="subject-path">
 <%=link_to '科目選択に戻る', subjects_path %>
+</div>
