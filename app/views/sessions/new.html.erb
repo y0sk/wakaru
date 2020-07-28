@@ -4,6 +4,9 @@
 </div>
 
 <div class="login">
+
+<p><%= $passion_words[rand($passion_words.length)]%></p>
+
 <%= form_for(:session, url: login_path) do |f| %>
      <div class="form-group">
         <%= f.label :email, 'Email' %><br>
